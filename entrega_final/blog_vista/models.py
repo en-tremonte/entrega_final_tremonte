@@ -6,7 +6,7 @@ class Articulos (models.Model):
     subtitulo = models.CharField(max_length = 50)
     texto = models.CharField(max_length = 4000)
     autor =  models.CharField(max_length = 30)
-    fecha = models.DateField()
+    fecha = models.DateField(auto_now_add=True)
     imagen = models.ImageField()
 
 class Noticias (models.Model): 
@@ -15,7 +15,7 @@ class Noticias (models.Model):
     subtitulo = models.CharField(max_length = 50)
     texto = models.CharField(max_length = 4000)
     autor =  models.CharField(max_length = 30)
-    fecha = models.DateField()
+    fecha = models.DateField(auto_now_add=True)
     imagen = models.ImageField()
 
 class Miembros (models.Model):
