@@ -9,11 +9,20 @@ def inicio(request):  #funcion de vista de inicio
 def about(request):
     return render (request, 'blog_vista/about.html')
 
-def articulos(request):
-    return render (request, 'blog_vista/articulos.html') 
+def medicina(request):
+    return render (request, 'blog_vista/medicina.html') 
 
-def noticias (request):
-    return render (request, 'blog_vista/noticias.html')
+def biologia (request):
+    return render (request, 'blog_vista/biologia.html')
+
+def filosofia (request):
+    return render (request, 'blog_vista/filosofia.html')
+
+def astronomia(request):
+    return render (request, 'blog_vista/astronomia.html')
+
+def tecnologia (request):
+    return render (request, 'blog_vista/tecnologia.html')
 
 def miembros (request):
     return render (request, 'blog_vista/miembros.html')
