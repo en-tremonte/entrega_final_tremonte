@@ -1,0 +1,25 @@
+{% extends 'blog_vista/padre.html' %}
+{% load static %}
+
+{% block tecnologia %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{tecnologia.titulo}}</title>
+</head>
+<body>
+    <p><i>{{ tecnologia.imagen }}</i></p>
+    <p>Titulo: <i>{{ tecnologia.titulo }}</i></p>
+    <p>Subtitulo: <i>{{ tecnologia.subtitulo }}</i></p>
+    <p>Autor: <i>{{ tecnologia.autor }}</i></p>
+    <p>Fecha: <i>{{ tecnologia.fecha }}</i></p>
+    <p>Texto: <i>{{ tecnologia.texto }}</i></p>
+    
+    <p>
+        <a class="btn btn-primary" href="{% url 'TecnologiaList' %}">Regresar</a>
+    </p>
+</body>
+</html>
+
+{%endblock%}

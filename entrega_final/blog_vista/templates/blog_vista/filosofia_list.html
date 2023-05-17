@@ -1,0 +1,24 @@
+{% extends 'blog_vista/padre.html' %}
+{% load static %}
+
+{% block filosofia %}
+
+<body>
+    <h1>Articulos de Filosofia</h1>
+    <ul>
+        {% for filosofia in object_list %}
+            <li>
+                <p>Titulo: {{ filosofia.titulo }}</p>
+                <p>Autor: {{ filosofia.autor }}</p>
+                <p>Fecha: {{ filosofia.fecha }}</p>
+                
+                <p>
+                    <a href="{% url 'FilosofiaDetail' filosofia.id %}">Leer más</a>
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'blog_vista/padre.html' %}
+{% load static %}
+
+{% block miembros %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{miembros.nombre}}</title>
+</head>
+<body>
+    <p><i>{{ miembros.foto }}</i></p>
+    <p>Nombre: <i>{{ miembros.nombre }}</i></p>
+    <p>Apellido: <i>{{ miembros.apellido }}</i></p>
+    <p>Email: <i>{{ miembros.email }}</i></p>
+
+    <p>
+        <a class="btn btn-primary" href="{% url 'miembrosList' %}">Regresar</a>
+    </p>
+</body>
+</html>
+
+{%endblock%}

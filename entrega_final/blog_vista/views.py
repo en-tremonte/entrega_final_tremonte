@@ -3,7 +3,7 @@ from blog_vista.models import *
 from django.http import HttpResponse
 
 
-def inicio(request):  #funcion de vista de inicio
+def inicio(request):  
     return render (request, 'blog_vista/inicio.html')
 
 def about(request):
@@ -29,3 +29,60 @@ def miembros (request):
 
 def buscar (request):
     return render (request, 'blog_vista/buscar.html')
+
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+
+class MedicinaList(ListView):
+    model = Medicina 
+    template_name='/blog_vista/medicina_list.html'
+
+class AstronomiaList(ListView):
+    model = Astronomía
+    template_name = 'blog_vista/astronomia_list.html'
+
+class FilosofiaList(ListView):
+    model = Filosofía
+    template_name = 'blog_vista/filosofia_list.html'
+
+class MedicinaDetalle(DetailView):
+    model= Medicina
+    template_name= "blog_vista/medicina_detalle.html"
+
+class AstronomiaDetalle(DetailView):
+    
+    model= Astronomía
+    template_name= "blog_vista/astronomia_detalle.html"
+
+class FilosofiaDetalle(DetailView):
+
+    model = Filosofía
+    template_name = 'blog_vista/filosofia_detalle.html'
+
+class BiologiaList(ListView):
+    model = Biología
+    template_name = 'blog_vista/biologia_list.html'
+
+class BiologiaDetalle(DetailView):
+
+    model = Biología
+    template_name = 'blog_vista/biologia_detalle.html'
+
+class TecnologiaList(ListView):
+    model = Tecnología
+    template_name = 'blog_vista/tecnologia_list.html'
+
+class TecnologiaDetalle(DetailView):
+
+    model = Tecnología
+    template_name = 'blog_vista/tecnologia_detalle.html'
+
+class MiembrosList(ListView):
+    model = Miembros
+    template_name = 'blog_vista/miembros_list.html'
+
+class MiembrosDetalle(DetailView):
+    model = Miembros
+    template_name = 'blog_vista/miembros_detalle.html'
+
+
