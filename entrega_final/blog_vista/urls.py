@@ -35,6 +35,18 @@ urlpatterns = [
     path('astronomiaForm', views.astronomia_form, name ='AstronomiaForm' ),
     path('filosofiaForm', views.filosofia_form, name ='FilosofiaForm' ),
     path('tecnologiaForm', views.tecnologia_form, name ='TecnologiaForm' ),
+    path('miembros/editar/<int:pk>', views.MiembrosUpdate.as_view(), name='MiembrosEdit'),
+    path('miembros/borrar/<int:pk>', views.MiembrosDelete.as_view(), name='MiembrosDelete'),
+    path('medicina/editar/<int:pk>', views.MedicinaUpdate.as_view(), name='MedicinaEdit'),
+    path('medicina/borrar/<int:pk>', views.MedicinaDelete.as_view(), name='MedicinaDelete'),
+    path('astronomia/editar/<int:pk>', views.AstronomiaUpdate.as_view(), name='AstronomiaEdit'),
+    path('astronomia/borrar/<int:pk>', views.AstronomiaDelete.as_view(), name='AstronomiaDelete'),
+    path('editar/<int:pk>', views.BiologiaUpdate.as_view(), name='BiologiaEdit'),
+    path('borrar/<int:pk>', views.BiologiaDelete.as_view(), name='BiologiaDelete'),
+    path('editar/<int:pk>', views.FilosofiaUpdate.as_view(), name='FilosofiaEdit'),
+    path('borrar/<int:pk>', views.FilosofiaDelete.as_view(), name='FilosofiaDelete'),
+    path('editar/<int:pk>', views.TecnologiaUpdate.as_view(), name='TecnologiaEdit'),
+    path('borrar/<int:pk>', views.TecnologiaDelete.as_view(), name='TecnologiaDelete'),
 ]
 
 

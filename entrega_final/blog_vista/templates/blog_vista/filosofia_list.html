@@ -14,6 +14,8 @@
                 
                 <p>
                     <a href="{% url 'FilosofiaDetail' filosofia.id %}">Leer más</a>
+                    <a href="{% url 'FilosofiaEdit' filosofia.id %}">Editar articulo</a>
+                    <a href="{% url 'FilosofiaDelete' filosofia.id %}">Borrar articulo</a>
                 </p>
             </li>
         {% endfor %}

@@ -1,0 +1,12 @@
+{% extends 'blog_vista/padre.html' %}
+{% load static %}
+
+{% block tecnologia %}
+<body>
+    
+    <form method="post">{% csrf_token %}
+        ¿Estas seguro de que deseas borrar a este articulo? <br>"{{ object }}"?<br>
+        <input type="submit" value="Borrar">
+    </form>
+</body>
+{% endblock %}

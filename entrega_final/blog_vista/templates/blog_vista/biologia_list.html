@@ -14,6 +14,8 @@
                 
                 <p>
                     <a href="{% url 'BiologiaDetail' biologia.id %}">Leer más</a>
+                    <a href="{% url 'BiologiaEdit' biologia.id %}">Editar articulo</a>
+                    <a href="{% url 'BiologiaDelete' biologia.id %}">Borrar articulo</a>
                 </p>
             </li>
         {% endfor %}

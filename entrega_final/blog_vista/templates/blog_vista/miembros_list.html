@@ -13,6 +13,8 @@
 
                 <p>
                     <a href="{% url 'MiembrosDetail' miembros.id %}">Más información</a>
+                    <a href="{% url 'MiembrosEdit' miembros.id %}">Editar datos</a>
+                    <a href="{% url 'MiembrosDelete' miembros.id %}">Borrar miembro</a>
                 </p>
             </li>
         {% endfor %}

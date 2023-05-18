@@ -97,103 +97,162 @@ from django import forms
 from .forms import *
 def miembros_form(request): 
     if request.method == 'POST':
-        formulario = MiembrosForm(request.POST)
+        form = MiembrosForm(request.POST)
 
-        if formulario.is_valid(): 
-            informacion = formulario.cleaned_data
+        if form.is_valid(): 
+            informacion = form.cleaned_data
             miembro = Miembros(nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'], universidad=informacion['universidad'], foto=informacion['foto'])
             miembro.save()
             return render(request, 'blog_vista/inicio.html')
         else:
-            print(formulario.errors)
+            print(form.errors)
     
     else:
-        formulario = MiembrosForm()
+        form = MiembrosForm()
         
-    return render(request, 'blog_vista/miembros_form.html', {'formulario': formulario})
+    return render(request, 'blog_vista/miembros_form.html', {'form': form})
 
 def medicina_form(request): 
     if request.method == 'POST':
-        formulario = MedicinaForm(request.POST)
+        form = MedicinaForm(request.POST)
 
-        if formulario.is_valid(): 
-            informacion = formulario.cleaned_data
+        if form.is_valid(): 
+            informacion = form.cleaned_data
             articulo_medicina = Medicina(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], texto=informacion['texto'], autor=informacion['autor'], imagen=informacion['imagen'])
             articulo_medicina.save()
             return render(request, 'blog_vista/inicio.html')
         else:
-            print(formulario.errors)
+            print(form.errors)
     
     else:
-        formulario = MedicinaForm()
+        form = MedicinaForm()
         
-    return render(request, 'blog_vista/medicina_form.html', {'formulario': formulario})
+    return render(request, 'blog_vista/medicina_form.html', {'form': form})
 
 
 def filosofia_form(request): 
     if request.method == 'POST':
-        formulario = FilosofiaForm(request.POST)
+        form = FilosofiaForm(request.POST)
 
-        if formulario.is_valid(): 
-            informacion = formulario.cleaned_data
+        if form.is_valid(): 
+            informacion = form.cleaned_data
             articulo_filosofia = Filosofía(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], texto=informacion['texto'], autor=informacion['autor'], imagen=informacion['imagen'])
             articulo_filosofia.save()
             return render(request, 'blog_vista/inicio.html')
         else:
-            print(formulario.errors)
+            print(form.errors)
     
     else:
-        formulario = FilosofiaForm()
+        form = FilosofiaForm()
         
-    return render(request, 'blog_vista/filosofia_form.html', {'formulario': formulario})
+    return render(request, 'blog_vista/filosofía_form.html', {'form': form})
 
 def biologia_form(request): 
     if request.method == 'POST':
-        formulario = BiologiaForm(request.POST)
+        form = BiologiaForm(request.POST)
 
-        if formulario.is_valid(): 
-            informacion = formulario.cleaned_data
+        if form.is_valid(): 
+            informacion = form.cleaned_data
             articulo_biologia = Biología(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], texto=informacion['texto'], autor=informacion['autor'], imagen=informacion['imagen'])
             articulo_biologia.save()
             return render(request, 'blog_vista/inicio.html')
         else:
-            print(formulario.errors)
+            print(form.errors)
     
     else:
-        formulario = BiologiaForm()
+        form = BiologiaForm()
         
-    return render(request, 'blog_vista/biologia_form.html', {'formulario': formulario})
+    return render(request, 'blog_vista/biología_form.html', {'form': form})
 
 def astronomia_form(request): 
     if request.method == 'POST':
-        formulario = AstronomiaForm(request.POST)
+        form = AstronomiaForm(request.POST)
 
-        if formulario.is_valid(): 
-            informacion = formulario.cleaned_data
+        if form.is_valid(): 
+            informacion = form.cleaned_data
             articulo_astronomia = Astronomía(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], texto=informacion['texto'], autor=informacion['autor'], imagen=informacion['imagen'])
             articulo_astronomia.save()
             return render(request, 'blog_vista/inicio.html')
         else:
-            print(formulario.errors)
+            print(form.errors)
     
     else:
-        formulario = AstronomiaForm()
+        form = AstronomiaForm()
         
-    return render(request, 'blog_vista/astronomia_form.html', {'formulario': formulario})
+    return render(request, 'blog_vista/astronomía_form.html', {'form': form})
 
 def tecnologia_form(request): 
-    if request.method == 'POST':
-        formulario = TecnologiaForm(request.POST)
 
-        if formulario.is_valid(): 
-            informacion = formulario.cleaned_data
+    if request.method == 'POST':
+        form = TecnologiaForm(request.POST)
+
+        if form.is_valid(): 
+            informacion = form.cleaned_data
             articulo_tecnologia = Tecnología(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], texto=informacion['texto'], autor=informacion['autor'], imagen=informacion['imagen'])
             articulo_tecnologia.save()
             return render(request, 'blog_vista/inicio.html')
         else:
-            print(formulario.errors)
+            print(form.errors)
     
     else:
-        formulario = TecnologiaForm()
+        form = TecnologiaForm()
         
-    return render(request, 'blog_vista/tecnologia_form.html', {'formulario': formulario})
+    return render(request, 'blog_vista/tecnología_form.html', {'form': form})
+
+#vistas de edicion
+
+from django.views.generic.edit import UpdateView, DeleteView
+
+class MiembrosUpdate(UpdateView):
+    model = Miembros
+    success_url = 'blog_vista/miembros/list'
+    fields = ['nombre', 'apellido', 'email', 'universidad', 'foto']
+
+class MiembrosDelete(DeleteView):
+    model = Miembros
+    success_url = 'blog_vista/miembros/list'
+
+class AstronomiaUpdate(UpdateView):
+    model = Astronomía
+    success_url = 'blog_vista/astronomia/list'
+    fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
+
+class AstronomiaDelete(DeleteView):
+    model = Astronomía
+    success_url = 'blog_vista/astronomia/list'
+
+class BiologiaUpdate(UpdateView):
+    model = Biología
+    success_url = 'blog_vista/biologia/list'
+    fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
+
+class BiologiaDelete(DeleteView):
+    model = Biología
+    success_url = 'blog_vista/biologia/list'
+
+class MedicinaUpdate(UpdateView):
+    model = Medicina
+    success_url = 'blog_vista/medicina/list'
+    fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
+
+class MedicinaDelete(DeleteView):
+    model = Medicina
+    success_url = 'blog_vista/medicina/list'
+
+class FilosofiaUpdate(UpdateView):
+    model = Filosofía
+    success_url = 'blog_vista/filosofia/list'
+    fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
+
+class FilosofiaDelete(DeleteView):
+    model = Filosofía
+    success_url = 'blog_vista/filosofia/list'
+
+class TecnologiaUpdate(UpdateView):
+    model = Tecnología
+    success_url = 'blog_vista/tecnologia/list'
+    fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
+
+class TecnologiaDelete(DeleteView):
+    model = Tecnología
+    success_url = 'blog_vista/tecnologia/list'
