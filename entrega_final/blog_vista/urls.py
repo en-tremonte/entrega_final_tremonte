@@ -1,6 +1,10 @@
 from django.urls import path 
 from blog_vista import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 
 urlpatterns = [
@@ -25,8 +29,16 @@ urlpatterns = [
     path('tecnologia/detalle/<int:pk>', views.detalle_tecnologia, name = 'TecnologiaDetail'),
     path('miembros/list', views.MiembrosList.as_view(), name='MiembrosList'),
     path('miembros/detalle/<int:pk>', views.MiembrosDetalle.as_view(), name='MiembrosDetail'),
-    #path(r'^nuevo$', views.MedicinaCreacion.as_view(),name='NewMedicina'),
+    path('miembrosForm', views.miembros_form, name = 'MiembrosForm'),
+    path('medicinaForm', views.medicina_form, name ='MedicinaForm' ),
+    path('biologiaForm', views.biologia_form, name ='BiologiaForm' ),
+    path('astronomiaForm', views.astronomia_form, name ='AstronomiaForm' ),
+    path('filosofiaForm', views.filosofia_form, name ='FilosofiaForm' ),
+    path('tecnologiaForm', views.tecnologia_form, name ='TecnologiaForm' ),
 ]
-    
+
+
+
+
     
 
