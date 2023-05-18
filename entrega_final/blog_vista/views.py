@@ -49,33 +49,40 @@ class MedicinaDetalle(DetailView):
     model= Medicina
     template_name= "blog_vista/medicina_detalle.html"
 
-class AstronomiaDetalle(DetailView):
-    
-    model= Astronomía
-    template_name= "blog_vista/astronomia_detalle.html"
 
-class FilosofiaDetalle(DetailView):
+def detalle_astronomia(request, pk):
+    astronomia = Astronomía.objects.get(pk=pk)
+    contexto = {'astronomia': astronomia}
+    return render(request, 'blog_vista/astronomia_detalle.html', contexto)
 
-    model = Filosofía
-    template_name = 'blog_vista/filosofia_detalle.html'
+
+
+def detalle_filosofia(request, pk):
+    filosofia = Filosofía.objects.get(pk=pk)
+    contexto = {'filosofia': filosofia}
+    return render(request, 'blog_vista/filosofia_detalle.html', contexto)
 
 class BiologiaList(ListView):
     model = Biología
     template_name = 'blog_vista/biologia_list.html'
 
-class BiologiaDetalle(DetailView):
 
-    model = Biología
-    template_name = 'blog_vista/biologia_detalle.html'
+def detalle_biologia(request, pk):
+    biologia = Biología.objects.get(pk=pk)
+    contexto = {'biologia': biologia}
+    return render(request, 'blog_vista/biologia_detalle.html', contexto)
 
 class TecnologiaList(ListView):
     model = Tecnología
     template_name = 'blog_vista/tecnologia_list.html'
 
-class TecnologiaDetalle(DetailView):
 
-    model = Tecnología
-    template_name = 'blog_vista/tecnologia_detalle.html'
+
+def detalle_tecnologia(request, pk):
+    tecnologia = Tecnología.objects.get(pk=pk)
+    contexto = {'tecnologia': tecnologia}
+    return render(request, 'blog_vista/tecnologia_detalle.html', contexto)
+
 
 class MiembrosList(ListView):
     model = Miembros
@@ -84,5 +91,14 @@ class MiembrosList(ListView):
 class MiembrosDetalle(DetailView):
     model = Miembros
     template_name = 'blog_vista/miembros_detalle.html'
+
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+
+class MedicinaCreacion(CreateView):
+    model = Medicina
+    success_url= 'blog_vista/medicina/list'
+    fields = ['titulo', 'subtitulo', 'texto', 'imagen', 'autor']
+
 
 

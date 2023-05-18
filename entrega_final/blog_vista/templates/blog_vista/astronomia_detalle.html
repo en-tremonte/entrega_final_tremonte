@@ -8,18 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{astronomia.titulo}}</title>
 </head>
-<body>
-    <p><i>{{ astronomia.imagen }}</i></p>
-    <p>Titulo: <i>{{ astronomia.titulo }}</i></p>
-    <p>Subtitulo: <i>{{ astronomia.subtitulo }}</i></p>
-    <p>Autor: <i>{{ astronomia.autor }}</i></p>
-    <p>Fecha: <i>{{ astronomia.fecha }}</i></p>
-    <p>Texto: <i>{{ astronomia.texto }}</i></p>
-    
-    <p>
-        <a class="btn btn-primary" href="{% url 'astronomiaList' %}">Regresar</a>
-    </p>
-</body>
+    <body>
+        <p><i>{{ astronomia.imagen }}</i></p>
+        <p>Titulo: <i>{{ astronomia.titulo }}</i></p>
+        <p>Subtitulo: <i>{{ astronomia.subtitulo }}</i></p>
+        <p>Autor: <i>{{ astronomia.autor }}</i></p>
+        <p>Fecha: <i>{{ astronomia.fecha }}</i></p>
+        <p>Texto: <i>{{ astronomia.texto }}</i></p>
+        
+        <p>
+            <a class="btn btn-primary" href="{% url 'AstronomiaList' %}">Regresar</a>
+        </p>
+    </body>
 </html>
 
 {%endblock%}

@@ -5,6 +5,8 @@
 
 <body>
     <h1>Articulos de Medicina</h1>
+
+
     <ul>
         {% for medicina in object_list %}
             <li>
@@ -16,6 +18,7 @@
                     <a href="{% url 'MedicinaDetail' medicina.id %}">Leer más</a>
                 </p>
             </li>
+
         {% endfor %}
     </ul>
     
