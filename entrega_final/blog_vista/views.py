@@ -202,57 +202,64 @@ def tecnologia_form(request):
 #vistas de edicion
 
 from django.views.generic.edit import UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
+
+class InicioView(TemplateView):
+    template_name = 'blog_vista/inicio.html'
+
+
 
 class MiembrosUpdate(UpdateView):
     model = Miembros
-    success_url = 'blog_vista/miembros/list'
+    success_url = reverse_lazy('MiembrosList')
     fields = ['nombre', 'apellido', 'email', 'universidad', 'foto']
 
 class MiembrosDelete(DeleteView):
     model = Miembros
-    success_url = 'blog_vista/miembros/list'
+    success_url = reverse_lazy('MiembrosList')
 
 class AstronomiaUpdate(UpdateView):
     model = Astronomía
-    success_url = 'blog_vista/astronomia/list'
+    success_url = reverse_lazy('AstronomiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
 class AstronomiaDelete(DeleteView):
     model = Astronomía
-    success_url = 'blog_vista/astronomia/list'
+    success_url = reverse_lazy('AstronomiaList')
 
 class BiologiaUpdate(UpdateView):
     model = Biología
-    success_url = 'blog_vista/biologia/list'
+    success_url = reverse_lazy('BiologiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
 class BiologiaDelete(DeleteView):
     model = Biología
-    success_url = 'blog_vista/biologia/list'
+    success_url = reverse_lazy('BiologiaList')
 
 class MedicinaUpdate(UpdateView):
     model = Medicina
-    success_url = 'blog_vista/medicina/list'
+    success_url = reverse_lazy('MedicinaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
 class MedicinaDelete(DeleteView):
     model = Medicina
-    success_url = 'blog_vista/medicina/list'
+    success_url = reverse_lazy('MedicinaList')
 
 class FilosofiaUpdate(UpdateView):
     model = Filosofía
-    success_url = 'blog_vista/filosofia/list'
+    success_url = reverse_lazy('FilosofiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
 class FilosofiaDelete(DeleteView):
     model = Filosofía
-    success_url = 'blog_vista/filosofia/list'
+    success_url = reverse_lazy('FilosofiaList')
 
 class TecnologiaUpdate(UpdateView):
     model = Tecnología
-    success_url = 'blog_vista/tecnologia/list'
+    success_url = reverse_lazy('TecnologiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
 class TecnologiaDelete(DeleteView):
     model = Tecnología
-    success_url = 'blog_vista/tecnologia/list'
+    success_url = reverse_lazy('TecnologiaList')

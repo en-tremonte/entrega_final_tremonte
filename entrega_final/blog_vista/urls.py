@@ -9,6 +9,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.inicio, name='Inicio'),
+    path('inicio/', views.InicioView.as_view(), name='inicio'),
     path('about/', views.about, name='About'),
     path('medicina/', views.medicina, name='Medicina'),
     path('miembros/', views.miembros, name='Miembros'),
@@ -41,12 +42,13 @@ urlpatterns = [
     path('medicina/borrar/<int:pk>', views.MedicinaDelete.as_view(), name='MedicinaDelete'),
     path('astronomia/editar/<int:pk>', views.AstronomiaUpdate.as_view(), name='AstronomiaEdit'),
     path('astronomia/borrar/<int:pk>', views.AstronomiaDelete.as_view(), name='AstronomiaDelete'),
-    path('editar/<int:pk>', views.BiologiaUpdate.as_view(), name='BiologiaEdit'),
-    path('borrar/<int:pk>', views.BiologiaDelete.as_view(), name='BiologiaDelete'),
-    path('editar/<int:pk>', views.FilosofiaUpdate.as_view(), name='FilosofiaEdit'),
-    path('borrar/<int:pk>', views.FilosofiaDelete.as_view(), name='FilosofiaDelete'),
-    path('editar/<int:pk>', views.TecnologiaUpdate.as_view(), name='TecnologiaEdit'),
-    path('borrar/<int:pk>', views.TecnologiaDelete.as_view(), name='TecnologiaDelete'),
+    path('biologia/editar/<int:pk>', views.BiologiaUpdate.as_view(), name='BiologiaEdit'),
+    path('biologia/borrar/<int:pk>', views.BiologiaDelete.as_view(), name='BiologiaDelete'),
+    path('filosofia/editar/<int:pk>', views.FilosofiaUpdate.as_view(), name='FilosofiaEdit'),
+    path('filosofia/borrar/<int:pk>', views.FilosofiaDelete.as_view(), name='FilosofiaDelete'),
+    path('tecnologia/editar/<int:pk>', views.TecnologiaUpdate.as_view(), name='TecnologiaEdit'),
+    path('tecnologia/borrar/<int:pk>', views.TecnologiaDelete.as_view(), name='TecnologiaDelete'),
+
 ]
 
 
