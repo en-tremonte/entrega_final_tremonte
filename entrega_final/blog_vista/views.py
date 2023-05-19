@@ -326,3 +326,24 @@ def register(request):
             #form = UserCreationForm()       
             form = UserRegisterForm()     
       return render(request,"blog_vista/registro.html" ,  {"form":form})
+
+from blog_vista.forms import UserRegisterForm, UserEditForm
+# Vista de editar el perfil
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
+            usuario.save()
+            return render(request, "blog_vista/inicio.html")
+    else:
+
+        miFormulario = UserEditForm(initial={'email': usuario.email})
+    return render(request, "blog_vista/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
