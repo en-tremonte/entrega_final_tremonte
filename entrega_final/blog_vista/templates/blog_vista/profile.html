@@ -1,0 +1,18 @@
+{% extends "blog_vista/padre.html" %}
+{% load static %}
+{% block inicio %}
+    
+    <h1></h1>
+    <h1> Perfil De {{usuario}}</h1>
+    
+        
+        
+            <li>
+                <p>email: {{ usuario.email }}</p>
+                <p>Nombre: {{ usuario.first_name}}</p>
+                <p>Apellido: {{ usuario.last_name }}</p>
+
+            </li>
+       
+     
+{% endblock %}

@@ -33,8 +33,10 @@
                 <a class="navbar-brand" href="{% url 'Logout' %}">Salir</a>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                <p class="text-muted small mb-4 mb-lg-0"> Hola, {{user.username}}! <br> Que gusto verte otra vez :)</p>
+                
                 <a class="navbar-brand" href="{% url 'EditarPerfil' %}">Editar perfil</a>
+                <a class="navbar-brand" href="{% url 'Profile' %}">Ver perfil</a>
+
                 {% endif %}
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,11 +66,22 @@
                         <div class="site-heading">
                             <h1>Efecto Doppler</h1>
                             <span class="subheading">Un nuevo tipo de revista de divulgación científica</span>
+                            
+                            {% if request.user.is_authenticated %}
+                                {% with avatares=request.user.avatar_set.all %}
+                                    {% if avatares %}
+                                        <img height = '50px' src = '{{avatares.0.imagen.url}}'>
+                                    {% endif %}
+                                    <p class="text-muted small mb-4 mb-lg-0"> Hola, {{user.username}}! <br> Que gusto verte otra vez :)</p>
+                                {% endwith %}
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+
 
         {%block inicio%}
 

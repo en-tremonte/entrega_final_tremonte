@@ -60,6 +60,7 @@ class MedicinaDetalle(DetailView):
 
 
 def detalle_astronomia(request, pk):
+
     astronomia = Astronomía.objects.get(pk=pk)
     contexto = {'astronomia': astronomia}
     return render(request, 'blog_vista/astronomia_detalle.html', contexto)
@@ -106,7 +107,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 @staff_member_required
 def miembros_form(request): 
     if request.method == 'POST':
-        form = MiembrosForm(request.POST)
+        #form = MiembrosForm(request.POST)
+        form = MiembrosForm(request.POST, request.FILES)
 
         if form.is_valid(): 
             informacion = form.cleaned_data
@@ -305,7 +307,7 @@ def login_request(request):
             user = authenticate(username= usuario, password=contrasenia)
             if user is not None:
                 login(request, user)
-                return render(request, "blog_vista/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request, "blog_vista/inicio.html", {"mensaje":f"{usuario}, es tu momento de navegar en el efecto doppler!"})
             else:
                 return render(request, "blog_vista/inicio.html", {"mensaje":"Datos incorrectos"})
         else:
@@ -341,9 +343,30 @@ def editarPerfil(request):
             usuario.password2 = informacion['password2']
             usuario.last_name = informacion['last_name']
             usuario.first_name = informacion['first_name']
+
+            
             usuario.save()
             return render(request, "blog_vista/inicio.html")
     else:
 
         miFormulario = UserEditForm(initial={'email': usuario.email})
     return render(request, "blog_vista/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+
+
+@login_required
+def profile(request):
+
+    usuario = request.user
+    context = {'usuario': usuario}
+    return render(request, 'blog_vista/profile.html', context)
+
+@login_required
+def inicio_login(request):
+    avatares= Avatar.objects.filter(user=request.user.id)
+    return render(request, 'blog_vista/inicio.html', {"url":avatares[0].imagen.url})
+
+def some_view(request):
+    user_avatar = Avatar.objects.get(user=request.user)
+    return render(request, 'blog_vista/padre.html', {'user_avatar': user_avatar})
+
+

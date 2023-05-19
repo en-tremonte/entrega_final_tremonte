@@ -128,6 +128,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
+
+
 STATICFILES_DIRS = [
     BASE_DIR / 'blog_vista' / 'static',
 ]
@@ -139,3 +141,4 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL= "/blog_vista/login"
+

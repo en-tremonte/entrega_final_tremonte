@@ -54,6 +54,8 @@ urlpatterns = [
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name='blog_vista/logout.html'), name='Logout'),
     path('editarPerfil', views.editarPerfil, name="EditarPerfil"),
+    path('profile', login_required(views.profile), name='Profile'),
+    path('inicio_login', login_required(views.inicio_login), name = 'InicioLogin')
 
 ]
 
