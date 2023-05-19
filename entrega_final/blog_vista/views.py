@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from blog_vista.models import *
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 #vistas principales de los models
 from django.templatetags.static import static
@@ -14,27 +15,27 @@ def inicio(request):
 
 def about(request):
     return render (request, 'blog_vista/about.html')
-
+login_required
 def medicina(request):
     return render (request, 'blog_vista/medicina.html') 
-
+login_required
 def biologia (request):
     return render (request, 'blog_vista/biologia.html')
-
+login_required
 def filosofia (request):
     return render (request, 'blog_vista/filosofia.html')
-
+login_required
 def astronomia(request):
     return render (request, 'blog_vista/astronomia.html')
-
+login_required
 def tecnologia (request):
     return render (request, 'blog_vista/tecnologia.html')
-
+login_required
 def miembros (request):
     return render (request, 'blog_vista/miembros.html')
 
-def buscar (request):
-    return render (request, 'blog_vista/buscar.html')
+
+
 
 #vistas en listas y detalles de cada model
 from django.views.generic import ListView
@@ -52,9 +53,11 @@ class FilosofiaList(ListView):
     model = Filosofía
     template_name = 'blog_vista/filosofia_list.html'
 
+
 class MedicinaDetalle(DetailView):
     model= Medicina
     template_name= "blog_vista/medicina_detalle.html"
+
 
 def detalle_astronomia(request, pk):
     astronomia = Astronomía.objects.get(pk=pk)
@@ -79,6 +82,7 @@ class TecnologiaList(ListView):
     model = Tecnología
     template_name = 'blog_vista/tecnologia_list.html'
 
+
 def detalle_tecnologia(request, pk):
     tecnologia = Tecnología.objects.get(pk=pk)
     contexto = {'tecnologia': tecnologia}
@@ -88,6 +92,7 @@ class MiembrosList(ListView):
     model = Miembros
     template_name = 'blog_vista/miembros_list.html'
 
+
 class MiembrosDetalle(DetailView):
     model = Miembros
     template_name = 'blog_vista/miembros_detalle.html'
@@ -95,6 +100,10 @@ class MiembrosDetalle(DetailView):
 #vistas de los forms: 
 from django import forms
 from .forms import *
+
+from django.contrib.admin.views.decorators import staff_member_required
+
+@staff_member_required
 def miembros_form(request): 
     if request.method == 'POST':
         form = MiembrosForm(request.POST)
@@ -112,6 +121,7 @@ def miembros_form(request):
         
     return render(request, 'blog_vista/miembros_form.html', {'form': form})
 
+@staff_member_required
 def medicina_form(request): 
     if request.method == 'POST':
         form = MedicinaForm(request.POST)
@@ -129,7 +139,7 @@ def medicina_form(request):
         
     return render(request, 'blog_vista/medicina_form.html', {'form': form})
 
-
+@staff_member_required
 def filosofia_form(request): 
     if request.method == 'POST':
         form = FilosofiaForm(request.POST)
@@ -147,6 +157,7 @@ def filosofia_form(request):
         
     return render(request, 'blog_vista/filosofía_form.html', {'form': form})
 
+@staff_member_required
 def biologia_form(request): 
     if request.method == 'POST':
         form = BiologiaForm(request.POST)
@@ -164,6 +175,7 @@ def biologia_form(request):
         
     return render(request, 'blog_vista/biología_form.html', {'form': form})
 
+@staff_member_required
 def astronomia_form(request): 
     if request.method == 'POST':
         form = AstronomiaForm(request.POST)
@@ -181,6 +193,7 @@ def astronomia_form(request):
         
     return render(request, 'blog_vista/astronomía_form.html', {'form': form})
 
+@staff_member_required
 def tecnologia_form(request): 
 
     if request.method == 'POST':
@@ -204,62 +217,112 @@ def tecnologia_form(request):
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 
 class InicioView(TemplateView):
     template_name = 'blog_vista/inicio.html'
 
+def user_is_admin(user):
+    return user.is_superuser
 
-
+@method_decorator(staff_member_required, name='dispatch')
 class MiembrosUpdate(UpdateView):
     model = Miembros
     success_url = reverse_lazy('MiembrosList')
     fields = ['nombre', 'apellido', 'email', 'universidad', 'foto']
 
+@method_decorator(staff_member_required, name='dispatch')
 class MiembrosDelete(DeleteView):
     model = Miembros
     success_url = reverse_lazy('MiembrosList')
 
+@method_decorator(staff_member_required, name='dispatch')
 class AstronomiaUpdate(UpdateView):
     model = Astronomía
     success_url = reverse_lazy('AstronomiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
+@method_decorator(staff_member_required, name='dispatch')
 class AstronomiaDelete(DeleteView):
     model = Astronomía
     success_url = reverse_lazy('AstronomiaList')
 
+@method_decorator(staff_member_required, name='dispatch')
 class BiologiaUpdate(UpdateView):
     model = Biología
     success_url = reverse_lazy('BiologiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
+@method_decorator(staff_member_required, name='dispatch')
 class BiologiaDelete(DeleteView):
     model = Biología
     success_url = reverse_lazy('BiologiaList')
 
+@method_decorator(staff_member_required, name='dispatch')
 class MedicinaUpdate(UpdateView):
     model = Medicina
     success_url = reverse_lazy('MedicinaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
+@method_decorator(staff_member_required, name='dispatch')
 class MedicinaDelete(DeleteView):
     model = Medicina
     success_url = reverse_lazy('MedicinaList')
 
+@method_decorator(staff_member_required, name='dispatch')
 class FilosofiaUpdate(UpdateView):
     model = Filosofía
     success_url = reverse_lazy('FilosofiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
+@method_decorator(staff_member_required, name='dispatch')
 class FilosofiaDelete(DeleteView):
     model = Filosofía
     success_url = reverse_lazy('FilosofiaList')
 
+@method_decorator(staff_member_required, name='dispatch')
 class TecnologiaUpdate(UpdateView):
     model = Tecnología
     success_url = reverse_lazy('TecnologiaList')
     fields = ['titulo', 'subtitulo', 'texto', 'autor', 'imagen']
 
+@method_decorator(staff_member_required, name='dispatch')
 class TecnologiaDelete(DeleteView):
     model = Tecnología
     success_url = reverse_lazy('TecnologiaList')
+
+from django.contrib.auth.forms import AuthenticationForm 
+from django.contrib.auth import login,logout,authenticate
+
+
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():  # Si pasó la validación de Django
+            usuario = form.cleaned_data.get('username')
+            contrasenia = form.cleaned_data.get('password')
+            user = authenticate(username= usuario, password=contrasenia)
+            if user is not None:
+                login(request, user)
+                return render(request, "blog_vista/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request, "blog_vista/inicio.html", {"mensaje":"Datos incorrectos"})
+        else:
+            return render(request, "blog_vista/inicio.html", {"mensaje":"Formulario erroneo"})
+    form = AuthenticationForm()
+    return render(request, "blog_vista/login.html", {"form": form})
+
+from blog_vista.forms import UserRegisterForm
+def register(request):
+      if request.method == 'POST':
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"blog_vista/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
+      else:
+            #form = UserCreationForm()       
+            form = UserRegisterForm()     
+      return render(request,"blog_vista/registro.html" ,  {"form":form})

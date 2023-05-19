@@ -4,6 +4,9 @@ from blog_vista import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -11,13 +14,12 @@ urlpatterns = [
     path('', views.inicio, name='Inicio'),
     path('inicio/', views.InicioView.as_view(), name='inicio'),
     path('about/', views.about, name='About'),
-    path('medicina/', views.medicina, name='Medicina'),
-    path('miembros/', views.miembros, name='Miembros'),
-    path('biologia/', views.biologia, name='Biologia'),
-    path('filosofia/', views.filosofia, name='Filosofia'),
-    path('astronomia/', views.astronomia, name='Astronomia'),
-    path('tecnologia/', views.tecnologia, name='Tecnologia'),
-    path('buscar/', views.buscar, name='Buscar'),
+    path('medicina/', login_required(views.medicina), name='Medicina'),
+    path('miembros/', login_required(views.miembros), name='Miembros'),
+    path('biologia/', login_required(views.biologia), name='Biologia'),
+    path('filosofia/', login_required(views.filosofia), name='Filosofia'),
+    path('astronomia/', login_required(views.astronomia), name='Astronomia'),
+    path('tecnologia/', login_required(views.tecnologia), name='Tecnologia'),
     path('medicina/list', views.MedicinaList.as_view(), name='MedicinaList'),
     path('medicina/detalle/<int:pk>', views.MedicinaDetalle.as_view(), name='MedicinaDetail'),
     path('astronomia/list', views.AstronomiaList.as_view(), name='AstronomiaList'),
@@ -48,6 +50,9 @@ urlpatterns = [
     path('filosofia/borrar/<int:pk>', views.FilosofiaDelete.as_view(), name='FilosofiaDelete'),
     path('tecnologia/editar/<int:pk>', views.TecnologiaUpdate.as_view(), name='TecnologiaEdit'),
     path('tecnologia/borrar/<int:pk>', views.TecnologiaDelete.as_view(), name='TecnologiaDelete'),
+    path('login',views.login_request, name="Login"),
+    path('register', views.register, name='Register'),
+    path('logout', LogoutView.as_view(template_name='blog_vista/logout.html'), name='Logout'),
 
 ]
 
