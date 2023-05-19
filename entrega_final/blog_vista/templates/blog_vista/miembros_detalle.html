@@ -9,9 +9,10 @@
     <title>{{miembros.nombre}}</title>
 </head>
 <body>
-    {% if miembro.foto %}
-    <img src="{{ miembro.foto.url }}" alt="Imagen">
-    {%endif%}
+    
+    <img style="height:150px" src="{{ miembros.foto.url }}" alt="Imagen">
+    
+    
     <p>Nombre: <i>{{ miembros.nombre }}</i></p>
     <p>Apellido: <i>{{ miembros.apellido }}</i></p>
     <p>Email: <i>{{ miembros.email }}</i></p>

@@ -1,1 +1,22 @@
-Hola David, te pido mil disculpas de antemano por molestarte con un mensaje privado. Te quería pedir ayuda, o algun consejo. Estoy teniendo problemas con algo muy puntual de mi proyecto. Hice una pág que muestra articulos cientificos. el punto es que cree los models de la categoria por ejemplo Medicina, la clase medicina como atributo tiene una imagen. Luego hice un form para poder ingresar una imagen para que quede guardada en cada instancia de medicina, lo que seria el articulo cientifico. Cuando veo el detalle de cada instancia, no me muestra la foto. Me dice 'Imagen' y el iconito de imagen rota, tipico de cuando no se puede cmostrar una imagen. Si llegas a tener un rato o ganas, te podria mostrar parte del codigo ? porque le di mil vueltas y no se en que me estoy equivocando.En el settings.py puse las vias de url correctamente porque el avatar me lo carga y la imagen no. Ya le indique en cada Model que el atributo imagen es un ImageField, puse el upload\_to, blank=True, Null=True. Luego en el form espicifiqué bien hasta el request.FILES. Sospecho que el problema puede ser en el url que uso en el html, pero lo cambio y lo re cambio y ninguno funciona. :( Bueno, no te molesto más! Si me podes ayudar voy a estar muy agradecido!
+```python 
+class AvatarFormulario(forms.Form):
+    #Especificar los campos
+    imagen = forms.ImageField(required=True)
+```
+
+Ahora podemos agregar en views.py la siguiente funcion
+```python 
+from django.contrib.auth.models import User
+from .forms import AvatarFormulario
+@login_required
+def agregarAvatar(request):
+      if request.method == 'POST':
+            miFormulario = AvatarFormulario(request.POST, request.FILES) #aquí mellega toda la información del html
+            if miFormulario.is_valid():   #Si pasó la validación de Django
+                  u = User.objects.get(username=request.user)
+                  avatar = Avatar(user=u, imagen=miFormulario.cleaned_data['imagen']) 
+                  avatar.save()
+                  return render(request, "App1/inicio.html") #Vuelvo al inicio o a donde quieran
+      else: 
+            miFormulario= AvatarFormulario() #Formulario vacio para construir el html
+      return render(request, "App1/agregarAvatar.html", {"miFormulario":miFormulario})

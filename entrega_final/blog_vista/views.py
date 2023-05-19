@@ -126,7 +126,7 @@ def miembros_form(request):
 @staff_member_required
 def medicina_form(request): 
     if request.method == 'POST':
-        form = MedicinaForm(request.POST)
+        form = MedicinaForm(request.POST, request.FILES)
 
         if form.is_valid(): 
             informacion = form.cleaned_data
@@ -144,7 +144,7 @@ def medicina_form(request):
 @staff_member_required
 def filosofia_form(request): 
     if request.method == 'POST':
-        form = FilosofiaForm(request.POST)
+        form = FilosofiaForm(request.POST, request.FILES)
 
         if form.is_valid(): 
             informacion = form.cleaned_data
@@ -162,7 +162,7 @@ def filosofia_form(request):
 @staff_member_required
 def biologia_form(request): 
     if request.method == 'POST':
-        form = BiologiaForm(request.POST)
+        form = BiologiaForm(request.POST, request.FILES)
 
         if form.is_valid(): 
             informacion = form.cleaned_data
@@ -180,7 +180,7 @@ def biologia_form(request):
 @staff_member_required
 def astronomia_form(request): 
     if request.method == 'POST':
-        form = AstronomiaForm(request.POST)
+        form = AstronomiaForm(request.POST, request.FILES)
 
         if form.is_valid(): 
             informacion = form.cleaned_data
@@ -199,7 +199,7 @@ def astronomia_form(request):
 def tecnologia_form(request): 
 
     if request.method == 'POST':
-        form = TecnologiaForm(request.POST)
+        form = TecnologiaForm(request.POST, request.FILES)
 
         if form.is_valid(): 
             informacion = form.cleaned_data
