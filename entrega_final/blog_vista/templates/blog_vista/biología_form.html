@@ -2,7 +2,7 @@
 {% load static %}
 {% block biologia %}
 
-
+    <div class="container text-center">
                 <form enctype="multipart/form-data" action = "" method = 'POST'> 
                     
                     {%csrf_token%}
@@ -16,5 +16,6 @@
                      
                     <input type="submit" value="Enviar">
                 </form>
-
+                <a class="btn btn-primary" href="{% url 'BiologiaList' %}">Regresar</a>
+    </div>
 {%endblock%}   

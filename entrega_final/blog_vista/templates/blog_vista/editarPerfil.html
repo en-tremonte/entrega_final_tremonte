@@ -2,7 +2,7 @@
 {% load static %}
 {% block inicio %}
     
-    <h1>Formulario - Editar Perfil</h1>
+    <h1>Editar Perfil</h1>
     <h1>De {{usuario}}</h1>
     <form action="" method="POST">{% csrf_token %}
         
@@ -11,4 +11,5 @@
         </table>
         <input type="submit", value="Enviar">
     </form>  
+    <a class="btn btn-primary" href="{% url 'AgregarAvatar' %}">Agregar avatar </a>
 {% endblock %}

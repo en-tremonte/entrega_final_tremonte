@@ -363,10 +363,23 @@ def profile(request):
 @login_required
 def inicio_login(request):
     avatares= Avatar.objects.filter(user=request.user.id)
-    return render(request, 'blog_vista/inicio.html', {"url":avatares[0].imagen.url})
+    return render(request, 'blog_vista/inicio.html', {"url":avatares[-1].imagen.url})
 
 def some_view(request):
     user_avatar = Avatar.objects.get(user=request.user)
     return render(request, 'blog_vista/padre.html', {'user_avatar': user_avatar})
 
+
+@login_required
+def agregarAvatar(request):
+      if request.method == 'POST':
+            miFormulario = AvatarFormulario(request.POST, request.FILES)
+            if miFormulario.is_valid():  
+                  u = User.objects.get(username=request.user)
+                  avatar = Avatar(user=u, imagen=miFormulario.cleaned_data['imagen']) 
+                  avatar.save()
+                  return render(request, "blog_vista/inicio.html") 
+      else: 
+            miFormulario= AvatarFormulario() 
+      return render(request, "blog_vista/agregarAvatar.html", {"miFormulario":miFormulario})
 

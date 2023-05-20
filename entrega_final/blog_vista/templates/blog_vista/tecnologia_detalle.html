@@ -8,20 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{tecnologia.titulo}}</title>
 </head>
+<div class="container text-center"> 
 <body>
     
         <img style="height:150px" src="{{ tecnologia.imagen.url }}" alt="">
     
-    <p>Titulo: <i>{{ tecnologia.titulo }}</i></p>
-    <p>Subtitulo: <i>{{ tecnologia.subtitulo }}</i></p>
-    <p>Autor: <i>{{ tecnologia.autor }}</i></p>
-    <p>Fecha: <i>{{ tecnologia.fecha }}</i></p>
-    <p>Texto: <i>{{ tecnologia.texto }}</i></p>
+        <p><h1> <i>{{ tecnologia.titulo }}</i></p></h1>
+        <p><h2><i>{{ tecnologia.subtitulo }}</i></p></h2>
+        <p>Por: <i>{{ tecnologia.autor }}</i></p>
+        <p>Fecha: <i>{{ tecnologia.fecha }}</i></p>
+        <p><i>{{ tecnologia.texto }}</i></p>
     
     <p>
         <a class="btn btn-primary" href="{% url 'TecnologiaList' %}">Regresar</a>
     </p>
 </body>
+</div>
 </html>
 
 {%endblock%}

@@ -2,19 +2,19 @@
 {% load static %}
 {% block filosofia %}
 
-
-                <form enctype="multipart/form-data" action = "" method = 'POST'> 
+<div class="container text-center">
+    <form enctype="multipart/form-data" action = "" method = 'POST'> 
+        {%csrf_token%}
                     
-                    {%csrf_token%}
-                    
-                    <table>
+            <table>
 
-                        {{form.as_table}}
+                {{form.as_table}}
 
-                    </table>
+            </table>
                     
                      
-                    <input type="submit" value="Enviar">
-                </form>
-
+                <input type="submit" value="Enviar">
+    </form>
+    <a class="btn btn-primary" href="{% url 'FilosofiaList' %}">Regresar</a>
+</div>
 {%endblock%}   
