@@ -71,7 +71,7 @@
                             {% if request.user.is_authenticated %}
                                 {% with avatares=request.user.avatar_set.all %}
                                     {% if avatares %}
-                                        <img height = '50px' src = '{{avatares.0.imagen.url}}'>
+                                        <img height = '60ypx' src = '{{avatares.0.imagen.url}}'>
                                     {% endif %}
                                     <p class="text-muted small mb-4 mb-lg-0"> Hola, {{user.username}}! <br> Que gusto verte otra vez :)</p>
                                 {% endwith %}
