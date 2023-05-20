@@ -19,11 +19,17 @@ Una vez registrado e iniciado sesion puede ver sus datos de perfil, modificarlos
 También podran desloguearse en la opción 'Salir' siempre que lo desee. 
 
 Los usuarios pueden navegar por distintos tipos de aticulos que están divididos en las siguientes categorías: 
+
 -Medicina
+
 -Biología
+
 -Filosofía
+
 -Astronomía
+
 -Tecnología
+
 Así como tambien podran ver una lista de los articulos por cada categoría y entrar en detalle del articulo para leerlo y ver su información: 
 -Una foto de portada, un titulo, un subtitulo, un autor, una fecha y un texto. 
 
